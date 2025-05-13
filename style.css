@@ -1,127 +1,803 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background: #e6e6e6;
-    padding: 0;
-    margin: 0;
-}
-
-.container{
-    width: 65%;
-    height: auto;
-    background: white;
-    margin: auto;
-    margin-top: 5px;
-    padding-bottom: 5px;
-}
-
-.logo{
-    font-size: xx-large;
-    padding: 30px 0 30px 10px;
-}
-
-nav ul{
-    list-style-type: none;
+/* Reset dan dasar */
+body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #1a75ff;
-    border: 1px solid gainsboro;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('img/bg.avif');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: white;
 }
 
-nav li{
-    float: left;
+/* Header / Judul Hotel */
+nav.menu {
+    background-color: rgba(44, 62, 80, 0.85);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-nav li a{
-    display: inline-block;
-    color: #ffffff;
-    text-align: center;
-    padding: 14px 15px;
+nav.menu label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Menu Navigasi */
+ul.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+ul.menu > li {
+    position: relative;
+}
+
+ul.menu > li > a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+ul.menu > li > a:hover {
+    background-color: #1abc9c;
+}
+
+/* Dropdown submenu */
+ul.menu li.has-dropdown > a::after {
+    content: " ▼";
+    font-size: 10px;
+}
+
+ul.menu li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(52, 152, 219, 0.95);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    min-width: 180px;
+    z-index: 1000;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+ul.menu li:hover ul {
+    display: block;
+}
+
+ul.menu li ul li a {
+    padding: 10px 16px;
+    display: block;
+    color: white;
     text-decoration: none;
 }
 
-nav li a:hover {
-    opacity: 0.9;
-    background-color: #3385ff;
+ul.menu li ul li a:hover {
+    background-color: #16a085;
 }
 
-article{
-    width: 98.8%;
+/* Konten utama */
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+main h1, main h2 {
+    color: #2c3e50;
+}
+
+main p, main li {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+main ul {
+    padding-left: 20px;
+}
+
+main ul li {
+    margin-bottom: 10px;
+}
+
+/* Gambar Fasilitas */
+.fasilitas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.fasilitas-item {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.fasilitas-item h3 {
+    color: #2c3e50;
+}
+
+.fasilitas-img {
+    width: 100%;
     height: auto;
-    border-radius: 3px;
-    margin: 5px 5px 5px 5px;
-    border: 1px solid gainsboro;
-    clear: both;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-article p{
-    padding: 5px 6px 5px 5px;
+/* Responsif */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    ul.menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    ul.menu > li > a {
+        padding: 12px 20px;
+        width: 100%;
+    }
+
+    ul.menu li ul {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+
+/* Animasi Hover Link Menu */
+ul.menu > li > a,
+ul.menu li ul li a {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Animasi Hover: Efek Zoom */
+ul.menu > li > a:hover,
+ul.menu li ul li a:hover {
+    transform: scale(1.05);
+}
+
+/* Animasi item fasilitas */
+.fasilitas-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fasilitas-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Efek pada gambar fasilitas */
+.fasilitas-img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.fasilitas-img:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(44, 62, 80, 0.85);
+    color: rgb(245, 238, 238);
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* style Lokasi */
+
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.88);
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+p {
+    line-height: 1.6;
+    color: #333;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+a {
+    color: #0066cc;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Peta dan iframe */
+iframe {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav.menu ul.menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav.menu ul.menu li a {
+        padding: 0.75rem 1rem;
+        width: 100%;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Style Peraturan */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
     line-height: 1.5;
 }
 
-article .konten {
-    width: 23.5%;
-    height: auto;
-    margin: 5px 5px 5px 5px;
-    border-radius: 3px;
-    border: 1px solid gainsboro;
-    float: left;
-}
-
-article .isi{
-    width: 98.5%;
-    height: auto;
-    margin: 5px 5px 5px 5px;
-    border-radius: 3px;
-    border: 1px solid gainsboro;
-    float: left;
-}
-
-article .isi .judul{
-    font-size: xx-large;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-article .isi p{
-    margin-top: 0;
-}
-
-article .isi img{
-    float: left;
-    margin: 5px 5px 5px 5px;
-}
-
-article .konten img{
-    width: 95.8%;
-    height: 150px;
-    margin: 5px 5px 5px 5px;
-}
-
-article .konten:hover {
-    opacity: 0.9;
-}
-
-article .konten .judul a{
-    margin-left: 5px;
+a {
+    color: #0066cc;
     text-decoration: none;
-    font-size: x-large;
-    color: #020101;
 }
 
-article .konten a:hover {
-    opacity: 0.9;
+a:hover {
+    text-decoration: underline;
 }
 
-footer{
-    clear: both;
-    width: 98.8%;
-    height: auto;
+/* Fasilitas Grid (Opsional jika dipakai di halaman fasilitas.html) */
+.fasilitas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.fasilitas-item {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
     text-align: center;
-    margin: 5px 5px 5px 5px;
-    border-radius: 3px;
-    border-bottom: 1px solid gainsboro;
-    padding-top: 15px;
-    padding-bottom: 15px;
+}
+
+.fasilitas-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+.fasilitas-item h3 {
+    margin: 0.5rem 0 0.25rem;
+    color: #1a1a1a;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav.menu ul.menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav.menu ul.menu li a {
+        padding: 0.75rem 1rem;
+        width: 100%;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Style Kamar*/
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.88);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    color: #333;
+}
+
+/* Judul */
+h1, h2 {
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+}
+
+/* Kamar */
+.room-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-items: center;
+}
+
+.room {
+    background-color:rgba(255, 255, 255, 0.92) ;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.room:hover {
+    transform: scale(1.02);
+}
+
+.room h3 {
+    color: #1a1a1a;
+    margin-top: 1rem;
+}
+
+.room p {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.price {
+    font-weight: bold;
+    color: #007700;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.room-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Tombol */
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0057b7;
+}
+
+/* Responsif: 1 kolom di layar kecil */
+@media (max-width: 768px) {
+    .room-types {
+        grid-template-columns: 1fr; /* hanya 1 kolom di mobile */
+    }
+}
+
+
+/* Style Kontak */
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color:  rgba(255, 255, 255, 0.88);
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Form Kontak */
+.kontak-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.kontak-form label {
+    font-weight: bold;
+}
+
+.kontak-form input,
+.kontak-form textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.kontak-form button {
+    padding: 0.75rem;
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.kontak-form button:hover {
+    background-color: #333;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav.menu ul.menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav.menu ul.menu li a {
+        padding: 0.75rem 1rem;
+        width: 100%;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+}
+
+/* Style Reservasi*/
+main {
+    padding: 2rem;
+    max-width: 550px; /* Menjadikan form lebih kecil */
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    opacity: 0.9; /* Sedikit transparan untuk tampilan lebih elegan */
+}
+
+h1 {
+    color: #1a1a1a;
+    margin-top: 1.5rem;
+    text-align: center; 
+    font-size: 2rem;
+}
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+input, select {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #0066cc;
+    outline: none;
+}
+
+button.button {
+    padding: 0.75rem 1.5rem;
+    background-color: #0066cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: auto;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button.button:hover {
+    background-color: #0057b7;
+}
+
+/* Responsif untuk layar lebih kecil */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 2rem;
+    }
+
+    nav.menu ul.menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav.menu ul.menu li {
+        width: 100%;
+    }
+
+    nav.menu ul.menu li a {
+        padding: 0.75rem;
+        width: 100%;
+    }
+
+    main {
+        padding: 1.5rem;
+        margin-top: 6rem;
+    }
+
+    .reservation-form .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    button.button {
+        padding: 0.75rem;
+        width: 100%;
+    }
+}
+
+/* Style Layanan*/
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.88);
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+p {
+    line-height: 1.6;
+    color: #333;
+}
+
+ul {
+    padding-left: 1.2rem;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+a {
+    color: #0066cc;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Peta dan iframe */
+iframe {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    nav.menu {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav.menu ul.menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav.menu ul.menu li a {
+        padding: 0.75rem 1rem;
+        width: 100%;
+    }
+
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Style foto profile */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, 0.88);
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Gaya Foto Profil */
+/* Gaya untuk foto profil */
+.profile-photo-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #2c3e50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .profile-section {
+        flex-direction: column;
+    }
 }
